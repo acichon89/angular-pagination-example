@@ -1,0 +1,12 @@
+<span ng-if="disableBackButton()">Previous</span>
+<a ng-if="!disableBackButton()" class="hoverable" ng-click="goToPage(currentPage - 1)">Previous </a>
+|
+<input ng-if="displayFirstButton()" ng-class="evaluateFirstButtonClass()" ng-click="clickFirstButton()" ng-disabled="disableFirstButton()" value="1" type="button" />
+<span class="middle" ng-if="displayFirstButton()  &amp;&amp; displayDotsAtBeggining()" > ... </span>
+<input ng-if="totalRecords !== 0" ng-repeat="n in range(getPaginationBarFirstPage(),getPaginationBarLastPage())" ng-class="getClassOfPageIndex(n)"
+	ng-click="evaluateOnClick(n)" type="button" ng-disabled="evaluateDisableIndex(n)" ng-value="n" />
+<span class="middle" ng-if="displayDotsAtEnd()" > ... </span>
+<input ng-if="displayDotsAtEnd()" ng-class="evaluateLastButtonClass()" ng-click="clickLastButton()" ng-disabled="disableLastButton()" ng-value="getNumberOfPages()" type="button" />
+|
+<span ng-if="disableNextButton()" >Next</span>
+<a ng-if="!disableNextButton()" class="hoverable" ng-click="goToPage(currentPage + 1)">  Next  </a>           

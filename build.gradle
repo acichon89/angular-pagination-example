@@ -1,0 +1,55 @@
+buildscript {
+    ext {
+        springBootVersion = '1.1.10.RELEASE'
+    }
+    repositories {
+        maven {
+            url "http://maven2.it.volvo.net/repository"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+ext {
+    springVersion = '4.2.5.RELEASE'
+    springBootVersion = '1.3.3.RELEASE'
+}
+    
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'spring-thymeleaf-example'
+	version =  '0.0.1'
+}
+
+repositories {
+    maven {
+        url "http://maven2.it.volvo.net/repository"
+    }
+    mavenCentral()
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+task local {
+    run { systemProperty "spring.profiles.active", "cached" }
+}
+
+bootRun.mustRunAfter local
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")    
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    compile("org.apache.commons:commons-lang3:3.0")
+}
+
+springBoot {
+    mainClass = "com.javangarda.spring.paginationexamples.AngularPaginationExample"
+}

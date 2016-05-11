@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorator="main">
+  <head>
+    <title>Content page 1</title>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/paginationBar.js"></script>
+    <script src="/js/searchController.js"></script>
+	
+  </head>
+  <body ng-app="searchApp" ng-controller="SearchVehicleCtrl" >
+    <div layout:fragment="actionBar" >
+      
+    </div>
+    <div layout:fragment="contentBody" >
+      <ul >
+	    <li ng-repeat="vehicle in vehicles">
+	      <p>{{vehicle.id + ' ' + vehicle.regNo}}</p>
+	    </li>
+	  </ul>
+	  <!-- PAGINATOR : -->
+	  <pagination-bar totalRecords="vehiclesCount" rowsPerPage="userPreferencesRowsPerPage" loaddatafunction="loadData(startIndex)" ></pagination-bar>
+	</div>
+  </body>
+</html>
